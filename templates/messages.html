@@ -1,0 +1,114 @@
+{% extends "main.html" %}
+
+{% block page_title %}Messaging System{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <ul>
+        <li><a href="#">Inbox</a></li>
+        <li><a href="#">Sent Messages</a></li>
+      <ul>
+    </div>
+    <div class="col-9">
+      <div class="text-primary">
+      <h2>Inbox</h2>
+      <!--
+      <table class="table text-primary ">
+        <tr>
+          <th>From</th>
+          <th>Subject</th>
+          <th>Message</th>
+          <th>Date</th>
+        </tr>
+        <!--
+        {% for i in inbox %}
+          {% if id == i.receiver %}
+
+          <tr><td>{{i.sender}}</td><td>{{i.receiver}}</td><td>{{i.subject}}</td><td>{{i.content}}</td><td>{{i.datetime}}</td></tr>
+          {% endif %}
+        {% endfor %}
+
+      </table>-->
+
+
+          <div class="list-group w-100">
+            <div class="row w-100">
+              <div class="list-group-item w-100 message_container">
+                <div class="checkbox text-left pull-left">   <!-- or you can put "pull-left" in the class here, which will also help move the checkbox to the very left of the field -->
+                </div>      <!-- in the below line, the word "empty" at the end of "glyphicon-star" will not fill the star, which will make it look empty. -->
+                <span class="text-left start_box">&nbsp;</span>  <!-- this &nbsp; helps give the space between the star icon and the name of message sender -->
+                <span class="from_box">From</span>
+                <span class="text-left subject_box">Subject</span>
+                <span class="text-muted message_box">Message</span>
+                <span class="badge text-muted text-right date_box">Date</span>
+              </div>
+            </div>
+
+            {% for i in inbox %}
+              {% if id == i.receiver %}
+              <div class="row w-100">
+                <div class="list-group-item w-100 message_container">
+                  <div class="checkbox text-left pull-left" >   <!-- or you can put "pull-left" in the class here, which will also help move the checkbox to the very left of the field -->
+                      <input type="checkbox">
+                  </div>      <!-- in the below line, the word "empty" at the end of "glyphicon-star" will not fill the star, which will make it look empty. -->
+                  <span class="glyphicon glyphicon-star-empty text-left">&nbsp;</span>  <!-- this &nbsp; helps give the space between the star icon and the name of message sender -->
+                  <span class="from_box">{{i.From}}</span>
+                  <span class="text-left subject_box">{{i.subject}}</span>
+                  <span class="text-muted message_box">{{i.content}}</span>
+                  <span class="badge text-muted text-right">{{i.datetime}}</span>
+                </div>
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+
+      <h2>Sent</h2>
+      <table class="table text-primary">
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Subject</th>
+          <th>Message</th>
+          <th>Date</th>
+        </tr>
+        {% for i in inbox %}
+          {% if id == i.sender %}
+
+          <tr><td>{{i.sender}}</td><td>{{i.receiver}}</td><td>{{i.subject}}</td><td>{{i.content}}</td><td>{{i.datetime}}</td></tr>
+          {% endif %}
+        {% endfor %}
+
+      </table>
+      <hr>
+      </div>
+    </div><!-- col-9 -->
+  </div> <!-- row -->
+  <div class="row alert-light">
+    <h2>Send Message</h2>
+
+    <h2>Create User</h2>
+
+    <form action="{{ form_action }}" method="POST">
+      <div class="form-group">
+        Subject:
+        <input class="form-control" type="text" name="subject" value="" />
+      </div>
+      <div class="form-group">
+        Message:
+        <input class="form-control" type="text" name="message" value="" />
+      </div>
+      <br>
+      <input class="form-control" type="hidden" name="sender" value="{{sender}}">
+      <input class="form-control" type="hidden" name="receiver" value="{{receiver}}">
+
+      <div class="form-group">
+      <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

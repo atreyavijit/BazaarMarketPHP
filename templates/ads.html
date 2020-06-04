@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+
+{% block page_title %}My Inbox{% endblock %}
+
+{% block content %}
+  <!-- ----------------------- -->
+  <div class="container">
+    <div class="row alert-light">
+      {% for e in products %}
+        {% set photosplit = e.photo|split('.') %}
+
+      <div class="col-sm-12 col-xs-12 col-lg-4 w-100">  <!-- for animation on the bag pictures, adapted the code from https://www.w3schools.com/howto/howto_css_image_overlay.asp -->
+        <a href="listing.php?id={{e.id}}"><img class="img-responsive image w-100" src="uploads/{{photosplit[0]}}.{{photosplit[1]}}" width="290px" height="290px" alt="Listing Image"></a>
+        <div class="bag-item">
+          <h4 class="bag-details"><strong><a href="listing.php?id={{e.id}}">{{e.name}}</a></strong> <br><br>{{e.details}}</h4>
+          <div class="text-right">
+            <h3 class="text-left">${{e.price}}<a href="listing.php?id={{e.id}}" class="text-right float-right"><button type="button" class="btn btn-primary p-1" >Click to View</button></a></h3>   <!-- got how to make button for bootstrap from https://www.w3schools.com/bootstrap/bootstrap_buttons.asp -->
+          </div>
+          <!-- in the above line, the button needs to be in the a tag so that we can link it to another page upon clicking the button. For more info, read https://stackoverflow.com/questions/12230981/how-do-i-navigate-to-another-page-on-button-click-with-twitter-bootstrap  -->
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <BR/>
+      <BR/>
+    </div>
+  </div>
+{% endblock %}

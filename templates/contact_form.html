@@ -1,0 +1,74 @@
+{% extends "main.html" %}
+
+{% block page_title %}Contact From{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+			<div class="col-12 col-md-6">
+				<h1 class="smaller"><span>BAZ</span>AAR</h1>
+				<h3 class="smaller">MONTREAL</h3>
+			</div>
+			<div class="col-12 col-md-5 right">
+					<p class><strong>CONTACT US</strong></p>
+					<p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within a matter of hours to help you.</p>
+					
+					{% if messages is not empty %}
+					<div class = "alert alert-danger">
+					  <div class="row">
+						<div class="col">
+						<strong>You made the following errors:</strong>
+						<ul>
+						{% for message in messages %}
+						  <li>{{message}}</li>
+						{% endfor %}
+						</ul>
+						</div>
+					  </div>
+					</div>
+					{% endif %}
+					
+					{% if success is not empty %}
+					<div class = "alert alert-success">
+					  <div class="row">
+						<div class="col">
+						{% for message in success %}
+						  {{message}}
+						{% endfor %}
+						</div>
+					  </div>
+					</div>
+					{% endif %}
+					
+					
+					<form id="contact-form" name="contact-form" action="{{form_action}}" method="POST">
+								<div class="form-group">
+									<label for="name" class="">Your name</label>
+									<input type="text" id="name" name="c_name" class="form-control" value = "{{post.c_name}}">
+								</div>
+								<div class="form-group">
+									<label for="email" class="">Your email</label>
+									<input type="text" id="email" name="c_email" class="form-control" value = "{{post.c_email}}">
+								</div>
+								<div class="form-group">
+									<label for="subject" class="">Subject</label>
+									<input type="text" id="subject" name="c_subject" class="form-control" value = "{{post.c_subject}}">
+								</div>
+								<div class="form-group">
+									<label for="message">Your message</label>
+									<textarea type="text" id="message" name="c_message" rows="4" class="form-control md-textarea">{{post.c_message}}</textarea>
+								</div>
+								<button type="submit" class="btn btn-default">Send</button>
+					</form>
+				</div>
+	</div>
+</div>
+
+
+
+
+	
+	{% endblock %}

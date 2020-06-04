@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+
+{% block page_title %}Product List{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+      <div class="col-lg-6 col-xs-12">
+          <h1 class="smaller"><span>BAZ</span>AAR</h1>
+          <h3 class="smaller">MONTREAL</h3>
+          <br><br>
+      </div>
+
+    <div class="col-lg-6 col-xs-12">
+	<br><br><br>
+		<p class><strong>WHAT IS THE REASON FOR REPORTING THIS USER?</strong></p>
+				{% if messages is not empty %}
+				<div class = "alert alert-danger">
+				  <div class="row">
+					<div class="col">
+					<ul>
+					{% for message in messages %}
+					  <li>{{message}}</li>
+					{% endfor %}
+					</ul>
+					</div>
+				  </div>
+				</div>
+				{% endif %}
+      <form action="{{form_action}}" method="POST">
+
+        
+        <div class="form-group">
+            <textarea type="text" id="message" name="report" rows="3" class="form-control md-textarea"></textarea>
+			<input type="hidden" name = "reporter" value = "{{session.id}}">
+			<input type= "hidden" name="reported" value= "{{get.id}}">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

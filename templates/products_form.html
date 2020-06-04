@@ -1,0 +1,89 @@
+{% extends "main.html" %}
+
+{% block page_title %}Product form{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+      <div class="col-lg-6 col-xs-12">
+          <h1 class="smaller"><span>BAZ</span>AAR</h1>
+          <h3 class="smaller">MONTREAL</h3>
+          <br><br>
+      <h2 class="text-muted text-center">
+        Start Selling
+      <!-- Not your typical online store!  -->
+      </h2>
+      <br>
+      <p class="text-muted text-center">
+        BAZAAR is the easiest way to sell high-quality secondhand items. <br><br>Give your wardrobe a second life!  Sell what you no longer wear to our global fashion community.
+      <!--	We’re the world’s largest online secondhand shopping destination with thousands of like-new styles from your favorite brands at up to 90% off estimated retail. We make sure every single one of the new arrivals added to the site every day by our users is 100% authentic and in such good shape anyone could mistake them as new. No knockoffs here—just knockoff prices. Find high-quality used clothing and accessories from fashionable closets just like yours. Specially curated by our style experts. All third party brand names and logos appearing on this page are trademarks or registered trademarks of their respective holders. Any such appearance does not necessarily imply any affiliation with or endorsement of BAZAAR.
+  -->
+      </p>
+      <h5 class="text-muted text-center">
+        <strong>Want to start selling? <br><br>Simply fill in the form on the right hand side!</strong>
+      </h5>
+    </div>
+
+    <div class="col-lg-6 col-xs-12">
+	<br><br><br>
+		<p class><strong>CREATE YOUR PRODUCT</strong></p>
+				{% if messages is not empty %}
+				<div class = "alert alert-danger">
+				  <div class="row">
+					<div class="col">
+					<strong>You made the following errors:</strong>
+					<ul>
+					{% for message in messages %}
+					  <li>{{message}}</li>
+					{% endfor %}
+					</ul>
+					</div>
+				  </div>
+				</div>
+				{% endif %}
+      <form action="{{form_action}}" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label for="product_name">Product Name:</label>
+          <input type="text" class="form-control" id="product_name" name="product_name">
+        </div>
+    <!--		<div class="form-group">
+          <label for="product_name">Product Category:</label>
+          <input type="text" class="form-control" id="product_name">
+        </div>		  -->
+        <div class="form-group">
+          <label for="product_name">Product Category:</label>
+          <select class="form-control custom-select" name="product_category" id="category">   <!-- got this idea for dropdown with bootstrap from https://stackoverflow.com/questions/18150954/how-can-i-render-a-list-select-box-dropdown-with-bootstrap
+                                    also read https://www.w3schools.com/tags/att_option_value.asp -->
+            <option value=""selected hidden>Choose here</option>   <!-- got this from https://stackoverflow.com/questions/3518002/how-can-i-set-the-default-value-for-an-html-select-element  -->
+            {% for cat in category %}
+              <option value="{{cat.id}}">{{cat.name}}</option>
+            {% endfor %}
+
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="price">Price ($):</label>
+          <input type="number" min="1" class="form-control" id="price" name="product_price">  <!-- Need to put min="1" or the number can be negative. Got the idea for min="1" from http://html5doctor.com/html5-forms-input-types/ -->
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="file">Upload Photo:</label>
+          </div>
+          <div class="w-100">
+              <label class="custom-file w-100" id="customFile">
+                  <input type="file" class="custom-file-input" id="exampleInputFile" name="product_image" aria-describedby="fileHelp">
+                  <span class="custom-file-control form-control-file"></span>
+              </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Product Details:</label>
+          <textarea type="text" id="message" name="product_details" rows="2" class="form-control md-textarea"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

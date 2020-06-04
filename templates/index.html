@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+
+{% block page_title %}Home page{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="title"><span>BAZ</span>AAR</h1>
+            <h3 class="subtitle">MONTREAL</h3>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% for list in listing %}
+        <div class="col-6 col-md-3" value="Name of Categories">
+             <a href="ads.php?id={{list.id}}">
+                <img class="rounded img-fluid" src="images/{{list.slug}}.jpg" alt="{{list.name}}" title="{{list.name}}">
+            </a>
+        </div>
+        {% endfor %}
+        <BR/>
+        <BR/>
+    </div>
+</div>
+
+
+{% endblock %}

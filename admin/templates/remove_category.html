@@ -1,0 +1,44 @@
+{% extends "admin_nav.html" %}
+
+{% block content %}
+{% if messages is not empty %}
+<div class = "alert alert-danger">
+  <div class="row">
+	<div class="col">
+	{% for message in messages %}
+	{{message}}
+	{% endfor %}
+	</div>
+  </div>
+</div>
+{% endif %}
+
+{% if success is not empty %}
+<div class = "alert alert-success">
+  <div class="row">
+	<div class="col">
+	{% for message in success %}
+	  {{message}}
+	{% endfor %}
+	</div>
+  </div>
+</div>
+{% endif %}
+<div class="row">
+  <div class="col admin_form">
+<form action="{{form_action}}" method="POST">
+  <div class="form-group">
+    <label for="category">Category Name</label>
+    <select class="form-control" name="category" id="category">
+      {% for cat in category %}
+        <option value="{{cat.slug}}">{{cat.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group text-right">
+    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+  </div>
+</form>
+</div>
+</div>
+{% endblock %}

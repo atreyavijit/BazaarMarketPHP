@@ -1,0 +1,70 @@
+{% extends "admin_nav.html" %}
+
+{% block content %}
+	{% if messages is not empty %}
+	<div class = "alert alert-danger">
+	  <div class="row">
+		<div class="col">
+		<strong>You made the following errors:</strong>
+		<ul>
+		{% for message in messages %}
+		  <li>{{message}}</li>
+		{% endfor %}
+		</ul>
+		</div>
+	  </div>
+	</div>
+	{% endif %}
+	
+	{% if success is not empty %}
+	<div class = "alert alert-success">
+	  <div class="row">
+		<div class="col">
+		{% for message in success %}
+		  {{message}}
+		{% endfor %}
+		</div>
+	  </div>
+	</div>
+	{% endif %}
+<div class="row">
+  <div class="col admin_form">
+<form action="{{form_action}}" method="POST">
+  <div class="form-group">
+    <label for="category">Category Name</label>
+    <input type="text" class="form-control" id="category" name="category" placeholder="Category Name">
+  </div>
+  <div class="form-group">
+    <label for="category_desc">Category Description</label>
+    <textarea class="form-control" id="category_desc" name="category_desc" placeholder="Category Description" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="category_slug">Category Slug</label>
+    <input type="text" class="form-control" id="category_slug" name="category_slug" placeholder="category_slug">
+  </div>
+<!--
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      {% for cat in category %}
+        <option value="{{cat.slug}}">{{cat.name}}</option>
+      {% endfor %}
+    </select>
+  </div>-->
+  <div class="form-group text-right">
+    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+  </div>
+</form>
+</div>
+</div>
+<div class="row">
+	<div class ="col">
+		<h2>Available Categories</h2>
+		<ul>
+			{% for cat in category %}
+			<li>{{cat.name}}</li>
+			{% endfor %}
+	</div>
+</div>
+	
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+{% block page_title %}Product List{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-6">
+				<h1 class="smaller"><span>BAZ</span>AAR</h1>
+				<h3 class="smaller">MONTREAL</h3>
+    </div>
+  </div>
+  <div class="container">
+      <aside id="sidebar">
+          <p class><strong>CATEGORIES</strong></p>
+          {% for ctg in category%}
+          <ul>
+            <li>
+              <a href="">{{ctg.name}}</a>
+            </li>
+          </ul>
+          {% endfor %}
+      </aside>
+      <article id="main-col">
+          <tr>
+              <td>Image</td>
+              <td>Description</td>
+              <td>price</td>
+          </tr>
+        </article>
+  </div>
+</div>
+
+    {% endblock %}
+
+
+    

@@ -1,0 +1,27 @@
+{% extends "admin_nav.html" %}
+
+{% block content %}
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Reporting User</th>
+      <th scope="col">Reported Listing ID</th>
+      <th scope="col">Reason for Reporting</th>
+      <th scope="col">Date of Reporting</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for report in reports %}
+      <tr><th scope='row'>{{report.id}}</th>
+      <td>{{report.reporter}}</td>
+      <td>{{report.reported}}</td>
+      <td>{{report.report}}</td>
+      <td>{{report.datetime}}</td>
+	  
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

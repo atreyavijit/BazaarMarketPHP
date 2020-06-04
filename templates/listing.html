@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+
+{% block page_title %}Listings{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% set photosplit = listing.photo|split('.') %}
+    <div class="card col-lg-6 col-xs-12 col-sm-12 alert-light bg-white text-center">
+      <img class="card-img-top" src="uploads/{{photosplit[0]}}_400x400.{{photosplit[1]}}" alt="">
+      <div class="card-body">
+        <h3 class="card-title text-left">{{listing.name}}<span class="text-right float-right">${{listing.price}}</span></h3>
+        <p class="card-text text-left">{{listing.details}}</p>
+        <h5 class="card-text text-left">Category: <a href="ads.php?id={{listing.category}}">{{listing.category_name}}</a></h5>
+
+      </div>
+    </div>
+    <div class="card col-lg-6 col-xs-12 col-sm-12 alert-light bg-white text-center">
+      <div class="card-body">
+        <h3 class="card-title text-right"><a href="profile.php?id={{listing.uid}}">{{listing.owner}}</a></h3>
+        <h5 class="card-title text-right">Email: {{listing.email}}</h5>
+        {% if is_logged_in %}
+          <div class="text-right"><a href="report.php?id={{listing.id}}" class="btn btn-primary">Report</a>
+          <a href="message.php?id={{listing.uid}}" class="btn btn-primary">Send Message</a></div>
+        {% endif %}
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

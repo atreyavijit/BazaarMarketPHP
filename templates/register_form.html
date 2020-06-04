@@ -1,0 +1,61 @@
+{% extends "main.html" %}
+
+{% block page_title %}Register page{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-6">
+				<h1 class="smaller"><span>BAZ</span>AAR</h1>
+				<h3 class="smaller">MONTREAL</h3>
+		</div>
+		<div class="col-12 col-md-5 right">
+				<p class><strong>REGISTER</strong></p>
+				{% if messages is not empty %}
+				<div class = "alert alert-danger">
+				  <div class="row">
+					<div class="col">
+					<strong>You made the following errors:</strong>
+					<ul>
+					{% for message in messages %}
+					  <li>{{message}}</li>
+					{% endfor %}
+					</ul>
+					</div>
+				  </div>
+				</div>
+				{% endif %}
+					<form action="{{form_action}}" method="POST">  <!-- this form is made entiredly with bootstrap. for more info, read https://www.w3schools.com/bootstrap/bootstrap_forms.asp -->
+						<div class="form-group">
+							<label for="full-name">Full Name:</label>
+							<input type="text" class="form-control" id="full-name" name="full_name" value ="{{post.full_name}}">
+						</div>
+						<div class="form-group">
+							<label for="username">Username:</label>
+							<input type="text" class="form-control" id="username" name="username" value ="{{post.username}}">
+						</div>
+						<div class="form-group">
+							<label for="email">Email address:</label>
+							<input type="email" class="form-control" id="email" name="email" value ="{{post.email}}">
+						</div>
+						<div class="form-group">
+							<label for="confirm-email">Confirm Email address:</label>
+							<input type="email" class="form-control" id="confirm-email" name="email_confirm" value ="{{post.email_confirm}}">
+						</div>
+						<div class="form-group">
+							<label for="password">Password:</label>
+							<input type="password" class="form-control" id="password" name="password">
+						</div>
+						<div class="form-group">
+							<label for="confirm-password">Confirm Password:</label>
+							<input type="password" class="form-control" id="confirm-password" name="password_confirm">
+						</div>
+						<button type="submit" class="btn btn-default">REGISTER</button>
+					</form>
+			</div>
+	</div>
+</div>
+    {% endblock %}
